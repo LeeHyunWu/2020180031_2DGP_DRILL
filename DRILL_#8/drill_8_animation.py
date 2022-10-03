@@ -33,8 +33,20 @@ def handle_events():
                 dir_y -= 1
             elif event.key == SDLK_DOWN:
                 dir_y += 1
-
-
+def check_x():
+    global x
+    global TUK_WIDTH
+    if x - 5 < 0:
+        x += 5
+    elif x + 5 > TUK_WIDTH:
+        x -= 5
+def check_y():
+    global y
+    global TUK_HEIGHT
+    if y - 5 < 0:
+        y += 5
+    elif y + 5 > TUK_HEIGHT:
+        y -= 5
 
 open_canvas(TUK_WIDTH, TUK_HEIGHT)
 tuk_ground = load_image('TUK_GROUND.png')
@@ -54,7 +66,9 @@ while running:
     update_canvas()
 
     x = dir_x * 5 + x
+    check_x()
     y = dir_y * 5 + y
+    check_y()
     frame = (frame + 1) % 8
 
     handle_events()
